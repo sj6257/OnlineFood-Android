@@ -1,0 +1,108 @@
+<ScrollView
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent"
+  android:fillViewport="true">
+
+<LinearLayout 
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <ImageView
+       android:id="@+id/imageView1"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_gravity="center_horizontal"
+       android:layout_marginTop="10dp"
+       android:src="@drawable/ic_logo" 
+       android:contentDescription="@string/desc_logo"/>
+
+    <TextView
+        android:id="@+id/lbl_Info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+         android:layout_marginTop="20dp"
+        android:layout_marginRight="10dp"
+        android:text="@string/lbl_Info"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+    
+     <TextView
+         android:id="@+id/lbl_ContactUs1"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_gravity="center_horizontal"
+         android:layout_marginTop="20dp"
+         android:text="@string/lbl_ContactUs1"
+         android:textAlignment="center"
+         android:textAppearance="?android:attr/textAppearanceSmall"
+         
+         android:textStyle="bold" />
+
+       <TextView
+           android:id="@+id/lbl_ContactUs2"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_gravity="center_horizontal"
+           android:text="@string/lbl_ContactUs2"
+           android:textAlignment="center"
+           android:textAppearance="?android:attr/textAppearanceSmall"
+          />
+
+       <TextView
+           android:id="@+id/lbl_ContactUs3"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_gravity="center_horizontal"
+           android:text="@string/lbl_ContactUs3"
+           android:textAlignment="center"
+           android:textAppearance="?android:attr/textAppearanceSmall"
+           />
+       
+       <TextView
+           android:id="@+id/lbl_Url"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_gravity="center_horizontal"
+           android:layout_marginTop="4dp"
+           android:text="@string/lbl_Url"
+           android:textAppearance="?android:attr/textAppearanceSmall"
+          
+           android:textStyle="bold" />
+     
+ 
+     
+     <TextView
+         android:id="@+id/lbl_PoweredBy"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_gravity="center_horizontal"
+         android:layout_marginTop="10dp"
+         android:text="@string/lbl_PoweredBy"
+         android:textAppearance="?android:attr/textAppearanceSmall"
+         />
+     
+      <TextView
+          android:id="@+id/lbl_TeamXDev"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_gravity="center_horizontal"
+          android:layout_marginTop="2dp"
+          android:text="@string/lbl_TeamXDev"
+          android:textAppearance="?android:attr/textAppearanceMedium"
+          android:textStyle="bold"/>
+      
+       <TextView
+           android:id="@+id/lbl_UrlTeamXDev"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_gravity="center_horizontal"
+           android:layout_marginTop="4dp"
+           android:text="@string/lbl_UrlTeamXDev"
+           android:textAppearance="?android:attr/textAppearanceSmall"
+           android:textStyle="bold" />
+       
+
+</LinearLayout>
+</ScrollView>

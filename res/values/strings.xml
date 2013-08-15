@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Nitefoodie</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_home">Home</string>
+    <string name="btn_ViewPastOrders">VIEW PAST ORDERS</string>
+    <string name="btn_LocationAndHours">LOCATION AND HOURS</string>
+    <string name="btn_NiteFoodie">ABOUT NITEFOODIE</string>
+    <string name="btn_OrderNow">ORDER NOW</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_signinorsignup">Sign In</string>
+    <string name="title_activity_sign_in_or_sign_up">Sign In</string>
+    <string name="action_settings">Settings</string>
+    <string name="desc_logo">Logo</string>
+    <string name="lbl_Email">E-Mail  </string>
+    <string name="lbl_Password">Password</string>
+    <string name="btn_SignIn">Sign In</string>
+    <string name="btn_SignUp">Sign Up</string>
+    <string name="lbl_Or">OR</string>
+    <string name="title_activity_sign_up">Sign Up</string>
+    <string name="btn_Continue">Continue</string>
+    <string name="lbl_Name">Name</string>
+    <string name="title_activity_account_details">Account Details</string>
+    <string name="lbl_PhoneNumber">Phone Number</string>
+    <string name="lbl_DeliveryInfo">Your Delivery Info</string>
+    <string name="lbl_StreetAddress">Street Address</string>
+    <string name="lbl_UnitApt">Unit,Apt,etc</string>
+    <string name="lbl_City">City</string>
+    <string name="lbl_State">State</string>
+    <string name="txt_City">Pune</string>
+    <string name="txt_State">Maharashatra</string>
+    <string name="lbl_Pincode">Pincode</string>
+    <string name="lbl_AccountSettings">Account Settings</string>
+    <string name="btn_SaveInformation">SAVE INFORMATION</string>
+    <string name="title_activity_location_and_hours">LOCATION AND HOURS</string>
+    <string name="radio_Location">Location</string>
+    <string name="radio_Hours">Hours</string>
+    <string name="lbl_DeliveryHours">DELIVERY HOURS</string>
+    <string name="lbl_Time"> 8.00 PM TO 5.00 AM</string>
+    <string name="title_activity_about">About NiteFoodie</string>
+    <string name="lbl_Info">NiteFoodie is India\'s first all night online convenience service\n\nQuick delivery of hot food at your doorstep is what makes our Night </string>
+    <string name="lbl_ContactUs1">Contact Us</string>
+    <string name="lbl_ContactUs2">Lane 7\, Koregaon Park \, Pune</string>
+    <string name="lbl_ContactUs3">Mob:+91 956 144 8349</string>
+    <string name="lbl_PoweredBy"> Powered By</string>
+    <string name="lbl_TeamXDev">TeamXDev</string>
+    <string name="lbl_Url">http:\\\\nitefoodie.com</string>
+    <string name="lbl_UrlTeamXDev">www.TeamXDev.com</string>
+    <string name="title_activity_menu">Menu</string>
+    <string name="title_activity_list_sub_menu">Menu Items</string>
+    <string name="title_activity_item_details">Details</string>
+
+</resources>

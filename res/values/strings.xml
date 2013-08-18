@@ -50,5 +50,8 @@
     <string name="title_activity_menu">Menu</string>
     <string name="title_activity_list_sub_menu">Menu Items</string>
     <string name="title_activity_item_details">Details</string>
+    <string name="btn_MyAccount">MY ACCOUNT</string>
+    <string name="title_activity_past_order">PREVIOUS ORDER</string>
+    
 
 </resources>

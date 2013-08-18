@@ -37,7 +37,7 @@
                 android:id="@+id/lbl_Email"
                 android:layout_width="90dp"
                 android:layout_height="wrap_content"  
-                android:text="@string/lbl_Email"
+                android:text="@string/lbl_Name"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
             
             <EditText

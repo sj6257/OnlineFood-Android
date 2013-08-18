@@ -1,74 +1,71 @@
-
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-     android:fillViewport="true"
-     >
-<RelativeLayout 
-     
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"  >
-    
-    
+    android:fillViewport="true" >
 
-   <Button
-       android:id="@+id/btn_LocationAndHours"
-       android:layout_width="248dp"
-       android:layout_height="wrap_content"
-       android:layout_alignParentLeft="true"
-       android:layout_centerVertical="true"
-       android:layout_marginLeft="31dp"
-        android:layout_marginBottom="4dp"
-       android:background="@drawable/btn_background1"
-       android:textColor="@drawable/btn_color1"
-       android:text="@string/btn_LocationAndHours" />
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
 
-   <Button
-       android:id="@+id/btn_NiteFoodie"
-       android:layout_width="248dp"
-       android:layout_height="wrap_content"
-       android:layout_alignLeft="@+id/btn_LocationAndHours"
-       android:layout_alignRight="@+id/btn_ViewPastOrders"
-       android:layout_below="@+id/btn_LocationAndHours"
-       android:background="@drawable/btn_background1"
-       android:textColor="@drawable/btn_color1"
-       android:text="@string/btn_NiteFoodie" />
+        <Button
+            android:id="@+id/btn_LocationAndHours"
+            android:layout_width="248dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginBottom="4dp"
+            android:layout_marginLeft="31dp"
+            android:background="@drawable/btn_background1"
+            android:text="@string/btn_LocationAndHours"
+            android:textColor="@drawable/btn_color1" />
 
-   <Button
-       android:id="@+id/btn_ViewPastOrders"
-       android:layout_width="248dp"
-        android:layout_marginBottom="4dp"
-       android:layout_height="wrap_content"
-       android:layout_above="@+id/btn_LocationAndHours"
-       android:layout_alignLeft="@+id/btn_LocationAndHours"
-       android:background="@drawable/btn_background1"
-       android:textColor="@drawable/btn_color1"
-       android:text="@string/btn_ViewPastOrders" />
+        <Button
+            android:id="@+id/btn_MyAccount"
+            android:layout_width="248dp"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/btn_LocationAndHours"
+            android:layout_alignRight="@+id/btn_ViewPastOrders"
+            android:layout_below="@+id/btn_LocationAndHours"
+            android:background="@drawable/btn_background1"
+            android:text="@string/btn_MyAccount"
+            android:textColor="@drawable/btn_color1" />
 
-    <Button
-        android:id="@+id/btn_OrderNow"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/btn_NiteFoodie"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="22dp"
-        android:background="@drawable/btn_background2"
-        android:textColor="@drawable/btn_color1"
-        android:height="80dp"
-        android:text="@string/btn_OrderNow"
-        android:textSize="@dimen/BIG" />
+        <Button
+            android:id="@+id/btn_ViewPastOrders"
+            android:layout_width="248dp"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/btn_LocationAndHours"
+            android:layout_alignLeft="@+id/btn_LocationAndHours"
+            android:layout_marginBottom="4dp"
+            android:background="@drawable/btn_background1"
+            android:text="@string/btn_ViewPastOrders"
+            android:textColor="@drawable/btn_color1" />
 
-    <ImageView
-        android:id="@+id/imageView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/btn_ViewPastOrders"
-        android:layout_alignLeft="@+id/btn_OrderNow"
-        android:layout_alignRight="@+id/btn_OrderNow"
-        android:src="@drawable/ic_logo" />
+        <Button
+            android:id="@+id/btn_OrderNow"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/btn_MyAccount"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="22dp"
+            android:background="@drawable/btn_background2"
+            android:height="80dp"
+            android:text="@string/btn_OrderNow"
+            android:textColor="@drawable/btn_color1"
+            android:textSize="@dimen/BIG" />
 
-    
-</RelativeLayout>
+
+        <ImageButton
+            android:id="@+id/img_logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/btn_ViewPastOrders"
+            android:layout_alignLeft="@+id/btn_OrderNow"
+            android:layout_alignRight="@+id/btn_OrderNow"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/desc_logo"
+            android:src="@drawable/ic_logo" >
+        </ImageButton>
+    </RelativeLayout>
 
 </ScrollView>

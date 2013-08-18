@@ -7,7 +7,7 @@
 
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="45dip"
+        android:layout_height="50dip"
         android:background="#ab8534"
         android:layout_marginLeft="4dp"
         android:layout_marginRight="4dp"
@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:textColor="#FFF"
-            android:textSize="15sp" />
+            android:textSize="18sp" />
     </LinearLayout>
 
 </LinearLayout>

@@ -11,8 +11,19 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:text="Sub Menu"
+        android:background="#8d9190" 
+        android:layout_margin="4dp"
+        android:textColor="#FFF"
         android:gravity="center"
         android:textAppearance="?android:attr/textAppearanceLarge" />
+
+  <LinearLayout
+      android:id="@+id/layout_SubMenu"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:layout_below="@id/lbl_SubMenu"
+      android:layout_margin="4dp"
+      android:background="#dfe0e2" >
 
     <ListView
         android:id="@+id/list_SubMenu"
@@ -21,5 +32,6 @@
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/lbl_SubMenu" >
     </ListView>
+    </LinearLayout>
 
 </RelativeLayout>

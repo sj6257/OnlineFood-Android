@@ -77,6 +77,7 @@ public class ListSubMenu extends Activity {
 
 					//start the DisplayActivity
 					startActivity(intent);
+					overridePendingTransition(R.anim.push_left_in,R.anim.push_left_out);
 				return false;
 			}
 		});

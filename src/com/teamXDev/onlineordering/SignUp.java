@@ -31,6 +31,7 @@ public class SignUp extends Activity {
 		// TODO Auto-generated method stub
 		Intent intent= new Intent(getApplicationContext(),AccountDetails.class);
 		startActivity(intent);
+		overridePendingTransition(R.anim.push_left_in,R.anim.push_left_out);
 	}
 	
 }

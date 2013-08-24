@@ -52,6 +52,13 @@
     <string name="title_activity_item_details">Details</string>
     <string name="btn_MyAccount">MY ACCOUNT</string>
     <string name="title_activity_past_order">PREVIOUS ORDER</string>
+    <string name="title_activity_final_order">FinalOrder</string>
+    <string name="title_activity_place_order">Place Order</string>
+    <string name="btn_EmptyCart">EMPTY CART</string>
+    <string name="btn_MyCart">MY CART</string>
+    <string name="btn_PlaceOrder">Place Order</string>
+    <string name="btn_CheckOut">Check Out</string>
+    <string name="lbl_LogOut">Log Out</string>
     
 
 </resources>

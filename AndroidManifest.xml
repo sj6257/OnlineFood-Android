@@ -17,7 +17,8 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name="com.teamXDev.onlineordering.Home"
-            android:label="@string/title_activity_home" >
+            android:label="@string/title_activity_home" 
+           >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -27,20 +28,17 @@
         <activity
             android:name="com.teamXDev.onlineordering.SignInOrSignUp"
             android:label="@string/title_activity_sign_in_or_sign_up"
-            android:windowSoftInputMode="stateHidden"
-             >
+            android:windowSoftInputMode="stateHidden" >
         </activity>
         <activity
             android:name="com.teamXDev.onlineordering.SignUp"
             android:label="@string/title_activity_sign_up"
-            android:windowSoftInputMode="stateHidden"
-             >
+            android:windowSoftInputMode="stateHidden" >
         </activity>
         <activity
             android:name="com.teamXDev.onlineordering.AccountDetails"
-            android:label="@string/title_activity_account_details" 
-            android:windowSoftInputMode="stateHidden"
-            >
+            android:label="@string/title_activity_account_details"
+            android:windowSoftInputMode="stateHidden" >
         </activity>
         <activity
             android:name="com.teamXDev.onlineordering.LocationAndHours"
@@ -52,7 +50,8 @@
         </activity>
         <activity
             android:name="com.teamXDev.onlineordering.ExpandableListMenu"
-            android:label="@string/title_activity_menu" >
+            android:label="@string/title_activity_menu"
+             >
         </activity>
         <activity
             android:name="com.teamXDev.onlineordering.ListSubMenu"
@@ -60,13 +59,20 @@
         </activity>
         <activity
             android:name="com.teamXDev.onlineordering.ItemDetails"
-            android:label="@string/title_activity_item_details" 
-            android:windowSoftInputMode="stateHidden"
-            >
+            android:label="@string/title_activity_item_details"
+            android:windowSoftInputMode="stateHidden" >
         </activity>
         <activity
             android:name="com.teamXDev.onlineordering.PastOrder"
             android:label="@string/title_activity_past_order" >
+        </activity>
+        <activity
+            android:name="com.teamXDev.onlineordering.FinalOrder"
+            android:label="@string/title_activity_final_order" >
+        </activity>
+        <activity
+            android:name="com.teamXDev.onlineordering.PlaceOrder"
+            android:label="@string/title_activity_place_order" >
         </activity>
     </application>
 

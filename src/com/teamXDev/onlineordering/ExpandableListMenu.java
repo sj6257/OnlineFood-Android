@@ -8,12 +8,11 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.ExpandableListView.OnGroupClickListener;
-import android.widget.ExpandableListView.OnGroupCollapseListener;
-import android.widget.ExpandableListView.OnGroupExpandListener;
-import android.widget.Toast;
 
 public class ExpandableListMenu extends Activity {
 
@@ -21,6 +20,7 @@ public class ExpandableListMenu extends Activity {
 	ExpandableListView expListView;
 	List<String> listDataHeader;
 	HashMap<String, List<String>> listDataChild;
+	Button btn_EmptyCart,btn_MyCart;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -99,9 +99,53 @@ public class ExpandableListMenu extends Activity {
 				return false;
 			}
 		});
+		
+		
+		
+		
+		btn_MyCart=(Button)findViewById(R.id.btn_MyCart);
+		btn_MyCart.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				goToFinalOrder();
+			}
+
+			
+		});	
+		
+		
+		btn_EmptyCart=(Button)findViewById(R.id.btn_EmptyCart);
+		btn_EmptyCart.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				emptyCart();
+			}
+
+			
+
+			
+		});
 
 	}
 
+	private void emptyCart() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	private void goToFinalOrder() {
+		// TODO Auto-generated method stub
+		
+		Intent intent=new Intent(getApplicationContext(),FinalOrder.class);
+		startActivity(intent);
+		overridePendingTransition(R.anim.push_left_in,R.anim.push_left_out);
+		
+	}
+	
 	private void goToDetails(String ItemClicked) {
 		// TODO Auto-generated method stub
 		Intent intent = new Intent(getApplicationContext(), ListSubMenu.class);
@@ -111,6 +155,8 @@ public class ExpandableListMenu extends Activity {
 		// b.putString("view","List");
 		intent.putExtras(b);
 		startActivity(intent);
+		
+		// animation for going forward
 		overridePendingTransition(R.anim.push_left_in,R.anim.push_left_out);
 
 	}
@@ -167,4 +213,14 @@ public class ExpandableListMenu extends Activity {
 		listDataChild.put(listDataHeader.get(7), LightWeight);
 
 	}
+	
+	@Override
+	public void onBackPressed() {
+	    finish();
+
+		Intent intent = new Intent(getApplicationContext(),Home.class);
+		startActivity(intent);
+	    overridePendingTransition(R.anim.push_right_in, R.anim.push_right_out);
+	}
+	
 }

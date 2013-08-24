@@ -1,5 +1,8 @@
 package com.teamXDev.onlineordering;
 
+
+
+import java.util.HashMap;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
@@ -11,13 +14,17 @@ import android.view.View.OnClickListener;
 import android.view.ViewConfiguration;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 public class Home extends Activity {
 
 	private static final String TAG = "Home";
-	Button btn_LocationAndHours, btn_ViewPastOrder, btn_MyAccount,
+	Button btn_LocationAndHours, btn_AboutNiteFoodie, btn_MyAccount,
 			btn_OrderNow;
 	ImageButton img_AboutNiteFoodie;
+	TextView lbl_UserName;
+	String name;
+	SessionManager session;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -52,27 +59,50 @@ public class Home extends Activity {
 
 		}
 
-		btn_ViewPastOrder = (Button) findViewById(R.id.btn_ViewPastOrders);
+		
+		
+		
+		btn_AboutNiteFoodie = (Button) findViewById(R.id.btn_NiteFoodie);
 		btn_LocationAndHours = (Button) findViewById(R.id.btn_LocationAndHours);
 		btn_MyAccount = (Button) findViewById(R.id.btn_MyAccount);
 		btn_OrderNow = (Button) findViewById(R.id.btn_OrderNow);
 		img_AboutNiteFoodie = (ImageButton) findViewById(R.id.img_logo);
+		lbl_UserName=(TextView)findViewById(R.id.lbl_UserName);
+		
+		session=new SessionManager(getApplicationContext());
+		if(session.isLoggedIn())
+		{
+			// get user data from session
+	        HashMap<String, String> user = session.getUserDetails();
+	        
+	        // name
+	        name = user.get(SessionManager.KEY_NAME);
+	        // display Name
+			lbl_UserName.setText("Hi "+name+"..");
+		}
+		
 
 		btn_MyAccount.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				goToSignInOrSignUp("btn_MyAccount");
+				if(session.isLoggedIn())
+					goToAccountDetails();
+				else
+					goToSignInOrSignUp();	
+				
 			}
+
+			
 		});
 
-		btn_ViewPastOrder.setOnClickListener(new OnClickListener() {
+		btn_AboutNiteFoodie.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				goToSignInOrSignUp("btn_ViewPastOrder");
+				goToAbout();
 			}
 		});
 
@@ -105,18 +135,29 @@ public class Home extends Activity {
 		});
 
 	}
+	
+	private void goToAccountDetails() {
+		// TODO Auto-generated method stub
+        String from="activity_Home";		
+		Bundle msg = new Bundle();
+		msg.putString("from", from);
+		Intent intent = new Intent(getApplicationContext(),AccountDetails.class);
+		intent.putExtras(msg);
+		
+		startActivity(intent);
+		
+	}
 
-	private void goToSignInOrSignUp(String from) {
+	private void goToSignInOrSignUp() {
 
-		Intent intent = new Intent(getApplicationContext(),
-				SignInOrSignUp.class);
-
+		String from="activity_Home";
+		
 		Bundle b = new Bundle();
-		// Inserts a String value into the mapping of this Bundle
 		b.putString("from", from);
-		// b.putString("view","List");
+		
+		Intent intent = new Intent(getApplicationContext(),SignInOrSignUp.class);
 		intent.putExtras(b);
-		// start the DisplayActivity
+		
 		startActivity(intent);
 	}
 

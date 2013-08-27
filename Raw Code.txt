@@ -1,0 +1,17 @@
+
+GetSubMenu: 
+
+input: category, subcategory
+
+output: {"success":1,"message":"Sub Menu Available","item":[{"id":"7","name":"Chicken Schezwan","cost":"130"}]}
+
+GetItemDetailsById
+
+
+input: id
+
+output: {"success":1,"message":"Item Details Available","cost_small":null,"cost_regular":"120","cost_large":null}
+
+
+
+

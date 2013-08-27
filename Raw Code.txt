@@ -1,4 +1,3 @@
-
 GetSubMenu: 
 
 input: category, subcategory
@@ -11,6 +10,11 @@ GetItemDetailsById
 input: id
 
 output: {"success":1,"message":"Item Details Available","cost_small":null,"cost_regular":"120","cost_large":null}
+
+
+
+Manifest Add this permission;
+<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
 
 

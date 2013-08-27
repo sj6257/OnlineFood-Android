@@ -163,7 +163,7 @@ public class ExpandableListMenu extends Activity {
 		listDataChild = new HashMap<String, List<String>>();
 
 		// Adding child data
-		listDataHeader.add("Chienese");
+		listDataHeader.add("Chinese");
 		listDataHeader.add("Breads");
 		listDataHeader.add("Indian");
 		listDataHeader.add("Beverages");

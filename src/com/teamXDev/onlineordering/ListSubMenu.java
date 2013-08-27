@@ -60,8 +60,7 @@ public class ListSubMenu extends Activity {
 		subcategory=(String) b.get("subcategory");
 		lbl_SubMenu.setText(subcategory);
 		
-		Log.e("category",category);
-		Log.e("subcategory",subcategory);
+	
 		
 		list_SubMenu = (ListView) findViewById(R.id.list_SubMenu);
 		
@@ -136,6 +135,9 @@ public class ListSubMenu extends Activity {
 				params.add(new BasicNameValuePair("category", category));
 				params.add(new BasicNameValuePair("subcategory", subcategory));
 
+				Log.e("category:",category);
+				Log.e("subcategory:",subcategory);
+				Log.e("SUBMENU_URL:",SUBMENU_URL);
 				
 				// getting product details by making HTTP request
 				JSONObject json = jsonParser.makeHttpRequest(SUBMENU_URL,"POST", params);
@@ -150,7 +152,7 @@ public class ListSubMenu extends Activity {
 				if (success == 1) {
 					
 					items=json.getJSONArray(TAG_ITEM);
-					ArrayList<String> receivedItem = new ArrayList<String>();
+				    receivedItem = new ArrayList<String>();
 					
 					for (int i = 0; i < items.length(); i++) {
 						JSONObject c = items.getJSONObject(i);
@@ -159,7 +161,7 @@ public class ListSubMenu extends Activity {
 						String name = c.getString(TAG_ITEM_NAME);
 						String cost = c.getString(TAG_ITEM_COST);
 						receivedItem.add(name);
-				
+				       
 					}
 					return json.getString(TAG_MESSAGE);
 				} else {
@@ -191,7 +193,10 @@ public class ListSubMenu extends Activity {
 	
 	private void setView() {
 		
-	  
+	  Log.e("Array size:",receivedItem.get(0));
+	  Log.e("Array size:",receivedItem.get(1));
+	  Log.e("Array size:",receivedItem.get(2));
+		
 	  ListSubMenuAdapter subMenuAdapter=new ListSubMenuAdapter(list_SubMenu.getContext(),R.layout.list_sub_menu_item,receivedItem);
 	  
 	  list_SubMenu.setAdapter(subMenuAdapter);

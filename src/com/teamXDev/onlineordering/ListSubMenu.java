@@ -3,21 +3,52 @@ package com.teamXDev.onlineordering;
 
 
 
-import android.os.Bundle;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.os.AsyncTask;
+import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.OnTouchListener;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Toast;
 
 public class ListSubMenu extends Activity {
+	
+	SessionManager session;
+	String category,subcategory;
+	ListView list_SubMenu;
+	ArrayList<String> receivedItem;
+	// Progress Dialog
+	private ProgressDialog pDialog;
 
+	// JSON parser class
+	JSONParser jsonParser = new JSONParser();
+	
+	private JSONArray items;
+
+	private static final String SUBMENU_URL = "http://www.teamXdev.com/webservice/GetSubMenu.php";
+	private static final String TAG_SUCCESS = "success";
+	private static final String TAG_MESSAGE = "message";
+	private static final String TAG_ITEM = "item";
+	private static final String TAG_ITEM_NAME = "name";
+	private static final String TAG_ITEM_COST = "cost";
+	
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -25,20 +56,21 @@ public class ListSubMenu extends Activity {
 		
 		TextView  lbl_SubMenu=(TextView)findViewById(R.id.lbl_SubMenu);
 		Bundle b = getIntent().getExtras();
-		String selecteItem= (String) b.get("ItemClicked");
-		lbl_SubMenu.setText(selecteItem);
+		category= (String) b.get("category");
+		subcategory=(String) b.get("subcategory");
+		lbl_SubMenu.setText(subcategory);
 		
-		ListView list_SubMenu = (ListView) findViewById(R.id.list_SubMenu);
+		Log.e("category",category);
+		Log.e("subcategory",subcategory);
+		
+		list_SubMenu = (ListView) findViewById(R.id.list_SubMenu);
+		
+		new RequestSubMenu().execute();
 		
 		list_SubMenu.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-				// TextView text1 = (TextView) view.findViewById(android.R.id.);
-				// Log.i(TAG,"You Clicked:"+ text1.getText().toString());
-				
-
-					//ListViewCustomAdapter lAdapter=(ListViewCustomAdapter)parent.getAdapter();
-				//	String clickedItem=(String) lAdapter.getItem(position);		 
+						 
 				   String clickedItem="Sample";
 					//Create a bundle object
 					Bundle b = new Bundle();
@@ -53,34 +85,15 @@ public class ListSubMenu extends Activity {
 
 					//start the DisplayActivity
 					startActivity(intent);
+					
+					//show Animation
+					overridePendingTransition(R.anim.push_left_in,R.anim.push_left_out);
 				
 			}
 		});
 		
 		
-		lbl_SubMenu.setOnTouchListener(new OnTouchListener() {
-			
-			@Override
-			public boolean onTouch(View v, MotionEvent event) {
-				// TODO Auto-generated method stub
-				 String clickedItem="Item";
-					//Create a bundle object
-					Bundle b = new Bundle();
-
-					//Inserts a String value into the mapping of this Bundle
-					b.putString("clickedItem",clickedItem);
-					// b.putString("age", age.getText().toString()); we can put as many parameters we need
-
-					Intent intent=new Intent(getApplicationContext(),ItemDetails.class);
-					//Add the bundle to the intent.
-					intent.putExtras(b);
-
-					//start the DisplayActivity
-					startActivity(intent);
-					overridePendingTransition(R.anim.push_left_in,R.anim.push_left_out);
-				return false;
-			}
-		});
+		
 		
 		
 	}
@@ -91,6 +104,119 @@ public class ListSubMenu extends Activity {
 	    overridePendingTransition(R.anim.appear, R.anim.push_right_out);
 	}
 
+	class RequestSubMenu extends AsyncTask<String, String, String> {
+
+		
+		/**
+		 * Before starting background thread Show Progress Dialog
+		 * */
+		boolean failure = false;
+
+		@Override
+		protected void onPreExecute() {
+			super.onPreExecute();
+			pDialog = new ProgressDialog(ListSubMenu.this);
+			pDialog.setMessage("Fetching info..");
+			pDialog.setIndeterminate(false);
+			pDialog.setCancelable(true);
+			pDialog.show();
+		}
+
+		@Override
+		protected String doInBackground(String... args) {
+			
+			// Check for success tag
+			int success;
+
+			try {
+				// Building Parameters
+				List<NameValuePair> params = new ArrayList<NameValuePair>();
+
+				
+				params.add(new BasicNameValuePair("category", category));
+				params.add(new BasicNameValuePair("subcategory", subcategory));
+
+				
+				// getting product details by making HTTP request
+				JSONObject json = jsonParser.makeHttpRequest(SUBMENU_URL,"POST", params);
+
+				// check your log for json response
+				Log.e("JSon","Fetching JSon");
+				Log.e("JSon Response:", json.toString());
+
+				// json success tag
+				success = json.getInt(TAG_SUCCESS);
+
+				if (success == 1) {
+					
+					items=json.getJSONArray(TAG_ITEM);
+					ArrayList<String> receivedItem = new ArrayList<String>();
+					
+					for (int i = 0; i < items.length(); i++) {
+						JSONObject c = items.getJSONObject(i);
+
+						// gets the content of each tag
+						String name = c.getString(TAG_ITEM_NAME);
+						String cost = c.getString(TAG_ITEM_COST);
+						receivedItem.add(name);
+				
+					}
+					return json.getString(TAG_MESSAGE);
+				} else {
+					Log.e("SubMenu-Operation Failed !",json.getString(TAG_MESSAGE));
+					return json.getString(TAG_MESSAGE);
+
+				}
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+
+			return null;
+
+		}
+
+		/**
+		 * After completing background task Dismiss the progress dialog
+		 * **/
+		protected void onPostExecute(String file_url) {
+			// dismiss the dialog once product deleted
+			pDialog.dismiss();
+			Log.e("Post Execute Message", file_url);
+			setView();
+		}
+
+		
+
+	}
 	
+	private void setView() {
+		
+	  
+	  ListSubMenuAdapter subMenuAdapter=new ListSubMenuAdapter(list_SubMenu.getContext(),R.layout.list_sub_menu_item,receivedItem);
+	  
+	  list_SubMenu.setAdapter(subMenuAdapter);
+	  
+	}
+	
+	// Checks the Network Connection
+				public boolean ConnectionsAvailable() {
+					boolean lRet = false;
+					try {
+						ConnectivityManager conMgr = (ConnectivityManager) getSystemService(ListSubMenu.CONNECTIVITY_SERVICE);
+						NetworkInfo info = conMgr.getActiveNetworkInfo();
+						if (info != null && info.isConnected()) {
+							lRet = true;
+						} else {
+							lRet = false;
+							Toast.makeText(ListSubMenu.this, "Connection Error",Toast.LENGTH_SHORT).show();
+						}
+					} catch (Exception e) {
+						Log.d("Connection Error", e.toString());
+						lRet = false;
+						Toast.makeText(ListSubMenu.this, "Connection Error",Toast.LENGTH_SHORT).show();
+					}
+					return lRet;
+				}
+
 	
 }

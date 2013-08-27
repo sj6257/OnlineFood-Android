@@ -3,6 +3,7 @@ package com.teamXDev.onlineordering;
 
 
 import java.util.HashMap;
+
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
@@ -79,7 +80,7 @@ public class Home extends Activity {
 	        name = user.get(SessionManager.KEY_NAME);
 	        // display Name
 			lbl_UserName.setText("Hi "+name+"..");
-		}
+ 		}
 		
 
 		btn_MyAccount.setOnClickListener(new OnClickListener() {
@@ -187,4 +188,12 @@ public class Home extends Activity {
 		startActivity(intent);
 
 	}
+	
+	@Override
+	public void onBackPressed() {
+	    finish();
+	   // clearing activity task so as to close app 
+	}
+	
+	
 }

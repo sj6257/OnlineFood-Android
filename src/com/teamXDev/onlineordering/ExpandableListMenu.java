@@ -49,7 +49,7 @@ public class ExpandableListMenu extends Activity {
 				// Toast.LENGTH_SHORT).show();
 
 				if (listAdapter.getChildrenCount(groupPosition) == 0) {
-					goToDetails(listDataHeader.get(groupPosition));
+					goToSubMenu(listDataHeader.get(groupPosition),listDataHeader.get(groupPosition));
 				}
 
 				return false;
@@ -87,14 +87,9 @@ public class ExpandableListMenu extends Activity {
 			@Override
 			public boolean onChildClick(ExpandableListView parent, View v,
 					int groupPosition, int childPosition, long id) {
-				// TODO Auto-generated method stub
-				/*
-				 * Toast.makeText( getApplicationContext(),
-				 * listDataHeader.get(groupPosition) + " : " +
-				 * listDataChild.get( listDataHeader.get(groupPosition)).get(
-				 * childPosition), Toast.LENGTH_SHORT) .show();
-				 */
-				 goToDetails(listDataChild.get( listDataHeader.get(groupPosition)).get(childPosition));
+				// pass clicked header and child to SubMenu Function
+				
+				goToSubMenu(listDataHeader.get(groupPosition),listDataChild.get( listDataHeader.get(groupPosition)).get(childPosition));
 				
 				return false;
 			}
@@ -146,12 +141,13 @@ public class ExpandableListMenu extends Activity {
 		
 	}
 	
-	private void goToDetails(String ItemClicked) {
+	private void goToSubMenu(String category,String subcategory) {
 		// TODO Auto-generated method stub
 		Intent intent = new Intent(getApplicationContext(), ListSubMenu.class);
 		Bundle b = new Bundle();
 		// Inserts a String value into the mapping of this Bundle
-		b.putString("ItemClicked", ItemClicked);
+		b.putString("category", category);
+		b.putString("subcategory",subcategory);
 		// b.putString("view","List");
 		intent.putExtras(b);
 		startActivity(intent);

@@ -11,6 +11,8 @@ import org.json.JSONObject;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -99,6 +101,7 @@ public class SignUp extends Activity {
 
 		if (email.length() > 0 && password.length() > 0
 				&& name.length() > 0) {
+			if (ConnectionsAvailable())
 			new AttemptRegister().execute();
 		} else
 			Toast.makeText(SignUp.this, "Invalid Credentials",
@@ -164,7 +167,7 @@ public class SignUp extends Activity {
 
 					Intent i = new Intent(SignUp.this, AccountDetails.class);
 					i.putExtras(b);
-					session.createLoginSession(name);
+					session.createLoginSession(name,email);
 					finish();
 					startActivity(i);
 					return json.getString(TAG_MESSAGE);
@@ -188,14 +191,33 @@ public class SignUp extends Activity {
 			// dismiss the dialog once product deleted
 			pDialog.dismiss();
 			if (file_url != null) {
-				Toast.makeText(SignUp.this, file_url, Toast.LENGTH_LONG).show();
+				Toast.makeText(SignUp.this, file_url, Toast.LENGTH_SHORT).show();
 				
 			} else
-				Toast.makeText(SignUp.this, "Registration Failure",
-						Toast.LENGTH_LONG).show();
+				Toast.makeText(SignUp.this, "Registration Failure",Toast.LENGTH_SHORT).show();
 
 		}
 
 	}
+	
+	// Checks the Network Connection
+		public boolean ConnectionsAvailable() {
+			boolean lRet = false;
+			try {
+				ConnectivityManager conMgr = (ConnectivityManager) getSystemService(SignUp.CONNECTIVITY_SERVICE);
+				NetworkInfo info = conMgr.getActiveNetworkInfo();
+				if (info != null && info.isConnected()) {
+					lRet = true;
+				} else {
+					lRet = false;
+					Toast.makeText(SignUp.this, "Connection Error",Toast.LENGTH_SHORT).show();
+				}
+			} catch (Exception e) {
+				Log.d("Connection Error", e.toString());
+				lRet = false;
+				Toast.makeText(SignUp.this, "Connection Error",Toast.LENGTH_SHORT).show();
+			}
+			return lRet;
+		}
 
 }

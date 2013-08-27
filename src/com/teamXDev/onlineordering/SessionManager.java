@@ -3,7 +3,6 @@ package com.teamXDev.onlineordering;
 import java.util.HashMap;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 
@@ -33,6 +32,7 @@ public class SessionManager {
 		
 		// User name (make variable public to access from outside)
 		public static final String KEY_NAME = "name";
+		public static final String KEY_EMAIL = "email";
 		
 		
 		// Constructor
@@ -45,7 +45,7 @@ public class SessionManager {
 		/**
 		 * Create login session
 		 * */
-		public void createLoginSession(String name){
+		public void createLoginSession(String name, String email){
 			
 			// clearing the saved data
 			editor.clear();
@@ -53,8 +53,12 @@ public class SessionManager {
 			// Storing login value as TRUE
 			editor.putBoolean(IS_LOGIN, true);
 			
+			
 			// Storing name in pref
 			editor.putString(KEY_NAME, name);
+			
+			// Storing email in Pref
+			editor.putString(KEY_EMAIL, email);
 			
 			// commit changes
 			editor.commit();
@@ -95,7 +99,7 @@ public class SessionManager {
 			user.put(KEY_NAME, pref.getString(KEY_NAME, null));
 			
 			// user email id
-			//user.put(KEY_EMAIL, pref.getString(KEY_EMAIL, null));
+			user.put(KEY_EMAIL, pref.getString(KEY_EMAIL, null));
 			
 			// return user
 			return user;

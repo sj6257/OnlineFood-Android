@@ -46,5 +46,20 @@ private static long back_pressed;
     }
 
 
+Chinese	Starter	1
+Chinese	Rice and Noodles	1
+Chinese	Curries	1
+Combos	Combos	5
+Add-Ons	Hookah Accesories	8
+Add-Ons	Desserts	8
+Add-Ons	Smokes	8
+Biryani-Rice	Non-Vegetarian	3
+Biryani-Rice	Vegetarian	3
+Beverages	Beverages	6
+Indian	Starter	2
+Indian	Main Course	2
+Breads	Breads	4
+Light-Weight	Light-Weight	7
+
 
 

@@ -18,4 +18,33 @@ Manifest Add this permission;
 
 
 
+private static long back_pressed; 
+    private Toast toast;
+    @Override
+    public void onBackPressed()
+    { 
+    	
+            
+    	if (back_pressed + 2000 > System.currentTimeMillis()) 
+    		{
+    		 // code for exit
+    		toast.cancel();  
+    		 Intent intent = new Intent(Intent.ACTION_MAIN);
+            intent.addCategory(Intent.CATEGORY_HOME);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+    		  // need to cancel the toast here
+            
+    		}
+            else 
+    		{
+            	
+            toast=  Toast.makeText(getBaseContext(), "Press once again to exit!", Toast.LENGTH_SHORT);	
+            toast.show();
+            }
+            back_pressed = System.currentTimeMillis();
+    }
+
+
+
 

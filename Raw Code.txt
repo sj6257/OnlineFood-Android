@@ -63,3 +63,14 @@ Light-Weight	Light-Weight	7
 
 
 
+
+http://www.teamxdev.com/webservice/GetItemDetailsById.php
+
+{"success":1,"message":"Item Details Available","cost_small":null,"cost_regular":"120","cost_large":null}
+
+
+
+
+
+
+

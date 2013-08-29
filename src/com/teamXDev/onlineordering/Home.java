@@ -16,6 +16,7 @@ import android.view.ViewConfiguration;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class Home extends Activity {
 
@@ -189,11 +190,34 @@ public class Home extends Activity {
 
 	}
 	
-	@Override
-	public void onBackPressed() {
-	    finish();
-	   // clearing activity task so as to close app 
-	}
-	
+	   private static long back_pressed; 
+	    private Toast toast;
+	    @Override
+	    public void onBackPressed()
+	    { 
+	    	
+	            
+	    	if (back_pressed + 2000 > System.currentTimeMillis()) 
+	    		{
+	    		 
+	    		// need to cancel the toast here
+	    		toast.cancel();  
+	    		// code for exit
+	    		 Intent intent = new Intent(Intent.ACTION_MAIN);
+	            intent.addCategory(Intent.CATEGORY_HOME);
+	            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+	            startActivity(intent);
+	    		  
+	            
+	    		}
+	            else 
+	    		{
+	            	
+	            toast=  Toast.makeText(getBaseContext(), "Press once again to exit!", Toast.LENGTH_SHORT);	
+	            toast.show();
+	            }
+	            back_pressed = System.currentTimeMillis();
+	    }
+
 	
 }

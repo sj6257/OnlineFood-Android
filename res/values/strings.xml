@@ -59,6 +59,8 @@
     <string name="btn_PlaceOrder">Place Order</string>
     <string name="btn_CheckOut">Check Out</string>
     <string name="lbl_LogOut">Log Out</string>
+    <string name="img_cnt_desc_ruppee">Ruppee Icon</string>
+    <string name="img_cnt_desc_arrow">Arrow Icon</string>
     
 
 </resources>

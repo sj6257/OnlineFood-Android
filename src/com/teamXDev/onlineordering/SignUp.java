@@ -9,17 +9,23 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class SignUp extends Activity {
@@ -29,7 +35,7 @@ public class SignUp extends Activity {
 	SessionManager session;
 
 	// Progress Dialog
-	private ProgressDialog pDialog;
+	private Dialog dialog;
 
 	// JSON parser class
 	JSONParser jsonParser = new JSONParser();
@@ -82,8 +88,6 @@ public class SignUp extends Activity {
 		txt_Password = (EditText) findViewById(R.id.txt_Password);
 		txt_Name = (EditText) findViewById(R.id.txt_Name);
 
-		
-
 		session = new SessionManager(getApplicationContext());
 	}
 
@@ -99,10 +103,9 @@ public class SignUp extends Activity {
 		password = txt_Password.getText().toString().trim();
 		name = txt_Name.getText().toString().trim();
 
-		if (email.length() > 0 && password.length() > 0
-				&& name.length() > 0) {
+		if (email.length() > 0 && password.length() > 0 && name.length() > 0) {
 			if (ConnectionsAvailable())
-			new AttemptRegister().execute();
+				new AttemptRegister().execute();
 		} else
 			Toast.makeText(SignUp.this, "Invalid Credentials",
 					Toast.LENGTH_LONG).show();
@@ -119,13 +122,29 @@ public class SignUp extends Activity {
 		@Override
 		protected void onPreExecute() {
 			super.onPreExecute();
-			pDialog = new ProgressDialog(SignUp.this); // getApplicatonContext()
-														// will give
-														// error
-			pDialog.setMessage("Registering Account...");
-			pDialog.setIndeterminate(false);
-			pDialog.setCancelable(true);
-			pDialog.show();
+			/*
+			 * pDialog = new ProgressDialog(SignUp.this); //
+			 * getApplicatonContext() // will give // error
+			 * pDialog.setMessage("Registering Account...");
+			 * pDialog.setIndeterminate(false); pDialog.setCancelable(true);
+			 * pDialog.show();
+			 */
+
+			
+			//alpha can be changed (0-255) to acheive desired opacity.
+	        // 0 transparent
+			Drawable d = new ColorDrawable(Color.BLACK);
+	        d.setAlpha(130);
+			dialog = new Dialog(SignUp.this);
+			// for dialog w/o title
+			dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+			dialog.setContentView(R.layout.progress_dialog);
+			TextView message = (TextView) dialog.findViewById(R.id.tv_loading);
+			message.setText("Registering Account...");
+			dialog.setCancelable(true);
+			dialog.getWindow().setBackgroundDrawable(d);
+			dialog.show();
+
 		}
 
 		@Override
@@ -167,7 +186,7 @@ public class SignUp extends Activity {
 
 					Intent i = new Intent(SignUp.this, AccountDetails.class);
 					i.putExtras(b);
-					session.createLoginSession(name,email);
+					session.createLoginSession(name, email);
 					finish();
 					startActivity(i);
 					return json.getString(TAG_MESSAGE);
@@ -189,35 +208,39 @@ public class SignUp extends Activity {
 		 * **/
 		protected void onPostExecute(String file_url) {
 			// dismiss the dialog once product deleted
-			pDialog.dismiss();
+			dialog.dismiss();
 			if (file_url != null) {
-				Toast.makeText(SignUp.this, file_url, Toast.LENGTH_SHORT).show();
-				
+				Toast.makeText(SignUp.this, file_url, Toast.LENGTH_SHORT)
+						.show();
+
 			} else
-				Toast.makeText(SignUp.this, "Registration Failure",Toast.LENGTH_SHORT).show();
+				Toast.makeText(SignUp.this, "Registration Failure",
+						Toast.LENGTH_SHORT).show();
 
 		}
 
 	}
-	
+
 	// Checks the Network Connection
-		public boolean ConnectionsAvailable() {
-			boolean lRet = false;
-			try {
-				ConnectivityManager conMgr = (ConnectivityManager) getSystemService(SignUp.CONNECTIVITY_SERVICE);
-				NetworkInfo info = conMgr.getActiveNetworkInfo();
-				if (info != null && info.isConnected()) {
-					lRet = true;
-				} else {
-					lRet = false;
-					Toast.makeText(SignUp.this, "Connection Error",Toast.LENGTH_SHORT).show();
-				}
-			} catch (Exception e) {
-				Log.d("Connection Error", e.toString());
+	public boolean ConnectionsAvailable() {
+		boolean lRet = false;
+		try {
+			ConnectivityManager conMgr = (ConnectivityManager) getSystemService(SignUp.CONNECTIVITY_SERVICE);
+			NetworkInfo info = conMgr.getActiveNetworkInfo();
+			if (info != null && info.isConnected()) {
+				lRet = true;
+			} else {
 				lRet = false;
-				Toast.makeText(SignUp.this, "Connection Error",Toast.LENGTH_SHORT).show();
+				Toast.makeText(SignUp.this, "Connection Error",
+						Toast.LENGTH_SHORT).show();
 			}
-			return lRet;
+		} catch (Exception e) {
+			Log.d("Connection Error", e.toString());
+			lRet = false;
+			Toast.makeText(SignUp.this, "Connection Error", Toast.LENGTH_SHORT)
+					.show();
 		}
+		return lRet;
+	}
 
 }

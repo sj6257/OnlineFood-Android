@@ -11,15 +11,25 @@ import android.widget.TextView;
 public class ItemDetails extends Activity {
 
 	Button btn_AddToOrder;
+	String itemID,itemName,itemCost;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_item_details);
-		TextView lbl_Item=(TextView)findViewById(R.id.lbl_Item);
+		TextView lbl_ItemName=(TextView)findViewById(R.id.lbl_Item);
+		TextView lbl_ItemCost=(TextView)findViewById(R.id.txt_ServingSize);
+		
 		Bundle b = getIntent().getExtras();
-		String selecteItem= (String) b.get("clickedItem");
-		lbl_Item.setText(selecteItem);
+		
+		itemID=(String) b.get("itemID");
+		itemName=(String)b.get("itemName");
+		itemCost=(String)b.get("itemCost");
+
+		
+		lbl_ItemName.setText(itemName);
+		lbl_ItemCost.setText("REGULAR   "+itemCost);
+		
 		
 		btn_AddToOrder=(Button)findViewById(R.id.btn_AddToOrder);
 		

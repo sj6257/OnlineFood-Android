@@ -7,9 +7,14 @@ import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import android.app.Activity;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -17,8 +22,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class SignInOrSignUp extends Activity {
@@ -30,7 +37,7 @@ public class SignInOrSignUp extends Activity {
 	SessionManager session;
 
 	// Progress Dialog
-	private ProgressDialog pDialog;
+	private Dialog dialog;
 
 	// JSON parser class
 	JSONParser jsonParser = new JSONParser();
@@ -123,6 +130,8 @@ public class SignInOrSignUp extends Activity {
 					Toast.LENGTH_LONG).show();
 
 	}
+	
+	 
 
 	class AttemptLogin extends AsyncTask<String, String, String> {
 
@@ -134,13 +143,30 @@ public class SignInOrSignUp extends Activity {
 		@Override
 		protected void onPreExecute() {
 			super.onPreExecute();
-			pDialog = new ProgressDialog(SignInOrSignUp.this); // getApplicatonContext()
+		/*	pDialog = new ProgressDialog(SignInOrSignUp.this); // getApplicatonContext()
 																// will give
 																// error
 			pDialog.setMessage("Attempting login...");
 			pDialog.setIndeterminate(false);
 			pDialog.setCancelable(true);
-			pDialog.show();
+			pDialog.show();*/
+			
+		    //alpha can be changed (0-255) to acheive desired opacity.
+	        // 0 transparent
+			Drawable d = new ColorDrawable(Color.BLACK);
+	        d.setAlpha(130);
+
+	        
+	        dialog = new Dialog(SignInOrSignUp.this);
+	        // for dialog w/o title
+	        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE); 
+			dialog.setContentView(R.layout.progress_dialog);
+			TextView message=(TextView)dialog.findViewById(R.id.tv_loading);
+	        message.setText("Attempting login...");
+	        dialog.setCancelable(true);
+	        dialog.getWindow().setBackgroundDrawable(d);
+	        dialog.show();
+			
 		}
 
 		@Override
@@ -214,7 +240,9 @@ public class SignInOrSignUp extends Activity {
 		 * **/
 		protected void onPostExecute(String file_url) {
 			// dismiss the dialog once product deleted
-			pDialog.dismiss();
+			//pDialog.dismiss();
+			dialog.dismiss();
+			
 			if (file_url != null) {
 				Toast.makeText(SignInOrSignUp.this, file_url, Toast.LENGTH_SHORT)
 						.show();

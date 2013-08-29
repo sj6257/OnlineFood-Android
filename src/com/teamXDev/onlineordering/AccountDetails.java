@@ -10,17 +10,26 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,6 +38,9 @@ public class AccountDetails extends Activity {
 	String from, task, name, email, streetAddress, unitApt, city, state,
 			pincode, phoneNumber;
 	Class<?> targetActivity;
+	LinearLayout layout_parent;
+	RelativeLayout layout_info;
+	View custom_progressbar;
 	Button btn_SaveInfromation, btn_LogOut;
 	EditText txt_PhoneNumber, txt_StreetAddress, txt_UnitApt, txt_City,
 			txt_State, txt_Pincode;
@@ -36,7 +48,7 @@ public class AccountDetails extends Activity {
 	SessionManager session;
 
 	// Progress Dialog
-	private ProgressDialog pDialog;
+		private Dialog dialog;
 
 	// JSON parser class
 	JSONParser jsonParser = new JSONParser();
@@ -181,11 +193,22 @@ public class AccountDetails extends Activity {
 		@Override
 		protected void onPreExecute() {
 			super.onPreExecute();
-			pDialog = new ProgressDialog(AccountDetails.this);
-			pDialog.setMessage("Retriving Account Info..");
-			pDialog.setIndeterminate(false);
-			pDialog.setCancelable(true);
-			pDialog.show();
+			
+			final LayoutInflater  inflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+			custom_progressbar = (View)inflater.inflate(R.layout.progress_dialog, null);
+			
+	        TextView message=(TextView) custom_progressbar.findViewById(R.id.tv_loading);
+	        message.setText("loading..");
+	        
+	        // hide the layouts till it get load
+	        layout_info =(RelativeLayout)findViewById(R.id.layout_info);
+	        layout_info.setVisibility(View.GONE);
+	        btn_SaveInfromation.setVisibility(View.GONE);
+	        
+	         
+	        // add progress bar to main layout
+	        layout_parent =(LinearLayout)findViewById(R.id.layout_parent);
+	        layout_parent.addView(custom_progressbar);
 		}
 
 		@Override
@@ -242,7 +265,10 @@ public class AccountDetails extends Activity {
 		 * **/
 		protected void onPostExecute(String file_url) {
 			// dismiss the dialog once product deleted
-			pDialog.dismiss();
+			layout_parent.removeView(custom_progressbar);
+			layout_info.setVisibility(View.VISIBLE);
+			btn_SaveInfromation.setVisibility(View.VISIBLE);
+			
 			Log.e("Post Execute Message", file_url);
 			setView();
 		}
@@ -259,13 +285,22 @@ public class AccountDetails extends Activity {
 		@Override
 		protected void onPreExecute() {
 			super.onPreExecute();
-			pDialog = new ProgressDialog(AccountDetails.this); // getApplicatonContext()
-			// will give
-			// error
-			pDialog.setMessage("Saving Account Info..");
-			pDialog.setIndeterminate(false);
-			pDialog.setCancelable(true);
-			pDialog.show();
+			//alpha can be changed (0-255) to acheive desired opacity.
+	        // 0 transparent
+			Drawable d = new ColorDrawable(Color.BLACK);
+	        d.setAlpha(130);
+
+	        
+	        dialog = new Dialog(AccountDetails.this);
+	        // for dialog w/o title
+	        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE); 
+			dialog.setContentView(R.layout.progress_dialog);
+			TextView message=(TextView)dialog.findViewById(R.id.tv_loading);
+	        message.setText("Saving Info...");
+	        dialog.setCancelable(true);
+	        dialog.getWindow().setBackgroundDrawable(d);
+	        dialog.show();
+			
 		}
 
 		@Override
@@ -331,7 +366,7 @@ public class AccountDetails extends Activity {
 		 * **/
 		protected void onPostExecute(String file_url) {
 			// dismiss the dialog once product deleted
-			pDialog.dismiss();
+			dialog.dismiss();
 			Log.e("Post Execute Message", file_url);
 
 		}

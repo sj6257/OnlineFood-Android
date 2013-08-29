@@ -167,7 +167,7 @@ public class ExpandableListMenu extends Activity {
 		listDataHeader.add("Breads");
 		listDataHeader.add("Indian");
 		listDataHeader.add("Beverages");
-		listDataHeader.add("Biryani");
+		listDataHeader.add("Biryani-Rice");
 		listDataHeader.add("Add-Ons");
 		listDataHeader.add("Combos");
 		listDataHeader.add("Light-Weight");
@@ -175,7 +175,7 @@ public class ExpandableListMenu extends Activity {
 		// Adding child data
 		List<String> Chienese = new ArrayList<String>();
 		Chienese.add("Starter");
-		Chienese.add("Rice Noodles");
+		Chienese.add("Rice and Noodles");
 		Chienese.add("Curries");
 
 		List<String> Breads = new ArrayList<String>();

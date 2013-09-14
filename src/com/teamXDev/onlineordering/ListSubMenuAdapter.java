@@ -14,6 +14,10 @@ public class ListSubMenuAdapter extends BaseAdapter {
 	ArrayList<String> subMenuItemName = new ArrayList<String>();
 	ArrayList<String> subMenuItemCost = new ArrayList<String>();
 	ArrayList<String> subMenuItemID = new ArrayList<String>();
+	
+	/*ArrayList<String> subMenuItemSmallCost = new ArrayList<String>();
+	ArrayList<String> subMenuItemLargeCost = new ArrayList<String>();*/
+	
 	// Resource ID of the list
 	int resourceID;
 
@@ -58,6 +62,18 @@ public class ListSubMenuAdapter extends BaseAdapter {
 	
 	}
 	
+	/*public Object getItemSmallCost(int position)
+	{
+		return subMenuItemCost.get(position);
+	
+	}
+	
+	public Object getItemLargeCost(int position)
+	{
+		return subMenuItemCost.get(position);
+	
+	}
+	*/
 	
 	@Override
 	public int getCount() {

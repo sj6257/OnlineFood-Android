@@ -7,6 +7,7 @@ import java.util.List;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -16,6 +17,7 @@ import android.widget.ExpandableListView.OnGroupClickListener;
 
 public class ExpandableListMenu extends Activity {
 
+	private static final String TAG = "ExpandableListMenu";
 	ExpandableListAdapter listAdapter;
 	ExpandableListView expListView;
 	List<String> listDataHeader;
@@ -129,7 +131,14 @@ public class ExpandableListMenu extends Activity {
 
 	private void emptyCart() {
 		// TODO Auto-generated method stub
-		
+		OnlineOrderingDataBaseAdapter mDBAdapter = new OnlineOrderingDataBaseAdapter(
+				this);
+		Log.i(TAG, "Adapter Ready..");
+		Log.i(TAG, "Creating/Opening Database");
+		mDBAdapter.createDatabase();
+		mDBAdapter.open();
+		mDBAdapter.emptyCart();
+		mDBAdapter.close();
 	}
 	
 	private void goToFinalOrder() {

@@ -19,6 +19,7 @@ import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -76,6 +77,9 @@ public class ListSubMenu extends Activity {
 				String itemID = (String) lAdapter.getCustomID(position);
 				String itemName = (String) lAdapter.getItem(position);
 				String itemCost = (String) lAdapter.getItemCost(position);
+				
+				//String itemSmallCost = (String) lAdapter.getItemCost(position);
+				//String itemLargeCost = (String) lAdapter.getItemCost(position);
 
 				// Create a bundle object
 				Bundle b = new Bundle();
@@ -84,6 +88,9 @@ public class ListSubMenu extends Activity {
 				b.putString("itemID", itemID);
 				b.putString("itemName", itemName);
 				b.putString("itemCost", itemCost);
+				
+				//b.putString("itemSmallCost", itemCost);
+				//b.putString("itemLargeCost", itemCost);
 
 				Intent intent = new Intent(getApplicationContext(),
 						ItemDetails.class);
@@ -136,6 +143,7 @@ public class ListSubMenu extends Activity {
 	        // add progress bar to main layout
 	        layout_parent =(LinearLayout)findViewById(R.id.layout_SubMenu);
 	        layout_parent.addView(custom_progressbar);
+	        layout_parent.setGravity(Gravity.CENTER);
 			
 		}
 
@@ -172,6 +180,8 @@ public class ListSubMenu extends Activity {
 					items = json.getJSONArray(TAG_ITEM);
 					receivedItemName = new ArrayList<String>();
 					receivedItemCost = new ArrayList<String>();
+					//receivedItemSmallCost = new ArrayList<String>();
+					//receivedItemLargeCost = new ArrayList<String>();
 					receivedItemID  = new ArrayList<String>();
 					for (int i = 0; i < items.length(); i++) {
 						JSONObject c = items.getJSONObject(i);
@@ -184,6 +194,8 @@ public class ListSubMenu extends Activity {
 						receivedItemCost.add(cost);
 						receivedItemID.add(id);
 
+						/*receivedItemSmallCost.add();
+						receivedItemLargeCost.add();*/
 					}
 					return json.getString(TAG_MESSAGE);
 				} else {
@@ -208,6 +220,7 @@ public class ListSubMenu extends Activity {
 			//pDialog.dismiss();
 			//enable the list and hide the progress bar
 			layout_parent.removeView(custom_progressbar);
+			layout_parent.setGravity(Gravity.NO_GRAVITY);
 			list_SubMenu.setVisibility(View.VISIBLE);
 			
 			Log.e("Post Execute Message", file_url);

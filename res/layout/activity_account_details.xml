@@ -3,7 +3,7 @@
     android:layout_height="fill_parent" >
 
     <LinearLayout
-         android:id="@+id/layout_parent"
+        android:id="@+id/layout_parent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="4dp"
@@ -16,8 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_marginBottom="4dp"
-            android:background="#8d9190"
-             >
+            android:background="#8d9190" >
 
             <TextView
                 android:id="@+id/lbl_Item"
@@ -27,25 +26,21 @@
                 android:text="My Account"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="#FFF" />
-            
-            <!--  android:background="#80000000" -->
+
+            <!-- android:background="#80000000" -->
 
             <Button
                 android:id="@+id/btn_LogOut"
                 style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="40dp"
+                android:layout_height="35dp"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentRight="true"
-                android:padding="6dp"
+                android:layout_marginBottom="4dp"
                 android:layout_marginRight="4dp"
                 android:layout_marginTop="4dp"
-                android:layout_marginBottom="4dp"
-                android:background="@drawable/btn_background1"
-                android:text="@string/lbl_LogOut"
-                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="#FFF" />
-
+                android:background="@drawable/icn_logout_white"
+                android:gravity="center" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -53,8 +48,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="4dp" >
-            
-              <LinearLayout
+
+            <LinearLayout
                 android:id="@+id/layout_Name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -82,12 +77,7 @@
                     android:background="#FFF"
                     android:paddingLeft="2dp"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
-                
             </LinearLayout>
-            
-            
-            
-            
 
             <LinearLayout
                 android:id="@+id/layout_email"
@@ -116,10 +106,9 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginTop="10dp"
-                    android:background="#FFF"               
+                    android:background="#FFF"
                     android:paddingLeft="2dp"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
-                
             </LinearLayout>
 
             <LinearLayout
@@ -305,7 +294,7 @@
             android:textColor="@drawable/btn_color1" />
 
         <View
-            android:id="@+id/line_invisible"
+            android:id="@+id/layout_invisible"
             android:layout_width="match_parent"
             android:layout_height="5dp"
             android:layout_marginTop="5dp"

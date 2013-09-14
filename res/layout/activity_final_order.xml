@@ -1,8 +1,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
- >
+    android:layout_height="match_parent" >
 
     <TextView
         android:id="@+id/lbl_FinalOrder"
@@ -10,25 +9,207 @@
         android:layout_height="45dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:text="YOUR ORDER"
-        android:background="#8d9190" 
         android:layout_margin="4dp"
-        android:textColor="#FFF"
+        android:background="#8d9190"
         android:gravity="center"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:text="YOUR ORDER"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#FFF" />
     
-    <Button
+    <ListView
+        android:id="@+id/lView_FinalOrder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lbl_FinalOrder"
+         >
+
+    </ListView>
+
+   <!--  <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/scroll_itemDetails"
+        android:layout_below="@id/lbl_FinalOrder" 
+      
+        >
+
+        <LinearLayout
+            android:id="@+id/layout_itemDetails"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:background="#dfe0e2"
+            android:orientation="vertical"
+            android:padding="5dp" >
+        </LinearLayout>
+    </ScrollView> -->
+    
+    
+
+    <LinearLayout
+        android:id="@+id/layout_finalOrderCostDetails"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:id="@+id/layout_couppenCode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:background="#dfe0e2"
+            android:orientation="horizontal"
+            android:padding="5dp" >
+
+            <EditText
+                android:id="@+id/txt_couponCode"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:background="@drawable/txtbox_background"
+                android:gravity="left|center_vertical"
+                android:hint="@string/hint_coupneCode"
+                android:paddingLeft="4dp"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <Button
+                android:id="@+id/btn_apply"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/btn_background1"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:text="@string/btn_apply" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_orderCost"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_margin="5dp"
+            android:background="#dfe0e2"
+            android:orientation="horizontal"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp" >
+
+            <LinearLayout
+                android:id="@+id/layout_orderCostLeft"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left|center_vertical"
+                android:layout_weight="2"
+                android:orientation="vertical" >
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+                    <TextView
+                        android:id="@+id/lbl_subTotal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/lbl_subTotal" />
+
+                    <TextView
+                        android:id="@+id/txt_subTotal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@id/lbl_subTotal" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" >
+
+                    <TextView
+                        android:id="@+id/lbl_taxesfees"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/lbl_taxesfees" />
+
+                    <TextView
+                        android:id="@+id/txt_taxesfees"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@id/lbl_taxesfees" />
+                </RelativeLayout>
+                
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" >
+
+                    <TextView
+                        android:id="@+id/lbl_couponCode"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/lbl_couponCode" />
+
+                    <TextView
+                        android:id="@+id/txt_couponOff"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@id/lbl_couponCode" />
+                </RelativeLayout>
+                
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_orderCostRight"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="left|center_vertical"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:background="#ab8534"
+                android:orientation="horizontal"
+                android:paddingLeft="2dp"
+                android:paddingRight="2dp" >
+
+                <ImageView
+                    android:id="@+id/icn_rupee"
+                    android:layout_width="30dip"
+                    android:layout_height="30dip"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="2dp"
+                    android:contentDescription="@string/img_cnt_desc_ruppee"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/icn_rupee" />
+
+                <TextView
+                    android:id="@+id/txt_FinalTotal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dip"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text=""
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#FFF" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <Button
             android:id="@+id/btn_CheckOut"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
+            android:layout_gravity="center"
+            android:layout_marginBottom="4dp"
             android:background="@drawable/btn_background1"
             android:gravity="center"
-            android:layout_centerHorizontal="true"
             android:maxWidth="@dimen/MaxButtonSize"
-            android:layout_marginBottom="4dp"
             android:minHeight="40dip"
             android:text="@string/btn_CheckOut"
             android:textColor="@drawable/btn_color1" />
-    
+    </LinearLayout>
+
+     
+
 </RelativeLayout>

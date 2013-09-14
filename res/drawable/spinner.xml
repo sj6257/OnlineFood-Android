@@ -12,7 +12,7 @@
             <bitmap
                 android:antialias="true"
                 android:filter="true"
-                android:src="@drawable/spinner_outer" />
+                android:src="@drawable/icn_spinner_90x90" />
         </rotate>
     </item>
 

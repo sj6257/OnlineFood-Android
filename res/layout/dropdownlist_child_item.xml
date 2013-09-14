@@ -1,33 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="44dp" >
+    android:layout_height="wrap_content" >
 
     <TextView
-        android:id="@+id/lbl_itemName"
+        android:id="@+id/lbl_ItemServingSize"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="8dip"
+        android:layout_height="wrap_content"
         android:gravity="left|center_vertical"
         android:text=""
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <ImageView
-        android:id="@+id/icn_arrow"
-        android:layout_width="18dip"
-        android:layout_height="18dip"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:layout_marginRight="8dip"
-        android:contentDescription="@string/img_cnt_desc_arrow"
-        android:src="@drawable/arrowright" />
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#000" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="34dip"
+        android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:layout_marginRight="20dip"
-        android:layout_toLeftOf="@id/icn_arrow"
         android:background="#ab8534"
         android:orientation="horizontal" >
 
@@ -42,7 +32,7 @@
             android:src="@drawable/icn_rupee" />
 
         <TextView
-            android:id="@+id/lbl_itemCost"
+            android:id="@+id/lbl_ItemCost"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

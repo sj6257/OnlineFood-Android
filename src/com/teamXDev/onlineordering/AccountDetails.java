@@ -196,7 +196,6 @@ public class AccountDetails extends Activity {
 			
 			final LayoutInflater  inflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			custom_progressbar = (View)inflater.inflate(R.layout.progress_dialog, null);
-			
 	        TextView message=(TextView) custom_progressbar.findViewById(R.id.tv_loading);
 	        message.setText("loading..");
 	        
@@ -209,6 +208,7 @@ public class AccountDetails extends Activity {
 	        // add progress bar to main layout
 	        layout_parent =(LinearLayout)findViewById(R.id.layout_parent);
 	        layout_parent.addView(custom_progressbar);
+	        
 		}
 
 		@Override

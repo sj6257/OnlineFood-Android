@@ -170,7 +170,7 @@ http://www.teamxdev.com/webservice/GetItemDetailsById.php
 </layer-list>
     
     
-    
+    intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
 
 
 

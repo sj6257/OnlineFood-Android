@@ -1,6 +1,6 @@
-OnlineOrdering
+Online Food Ordering
 ==============
 
-Online ordering is an android application for any web based goods ordering system.
+Online Food ordering is an android application for any web based food ordering system.
 
-This application is designed and developed by Sandeep & Ishan.
+The application is aimed towards creating a generic framework to order food from any restaurant.
